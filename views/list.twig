@@ -1,3 +1,5 @@
+<!DOCTYPE html>
+<html>
 <head>
     <title>TEST PROJET</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous"/>
@@ -27,8 +29,8 @@
                                 <h1 class="card-title">{{ product.name }}</h1>
                             </span>
                             <h6 class="card-text">{{ product.description }}</h6>
-                            <a class="btn btn-primary" href="/products/view/{{ product.id }}" title="View more">
-                                <button>
+                            <a href="/products/view/{{ product.id }}" title="View more">
+                                <button class="btn btn-primary">
                                     View More
                                 </button>
                             </a>
@@ -42,3 +44,4 @@
         <a href="http://www.chanel.com" class="logo"> </a>
     </div>
 </body>
+</html>
