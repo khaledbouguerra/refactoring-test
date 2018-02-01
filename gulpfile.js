@@ -4,8 +4,10 @@ var nodemon = require('gulp-nodemon');
 var notify = require('gulp-notify');
 var clean = require('gulp-clean');
 
+const srcfiles = ["app.js", "routes/*", 'lib/*', 'middleware/*', 'models/*']
+
 gulp.task('es6', () => {
-    return gulp.src(["app.js", "routes/*", 'lib/*', 'middleware/*'], {base: "."})
+    return gulp.src(srcfiles, {base: "."})
         .pipe(babel({presets: ['es2015']}))
         .pipe(gulp.dest('dist'))
 });
@@ -27,7 +29,7 @@ gulp.task('clean', function () {
 gulp.task('server', function() {
     nodemon({
         script: 'dist/app.js',
-        watch: ["app.js", "routes/*", 'lib/*', 'middleware/*', 'config/*'],
+        watch: srcfiles.concat(['config/*']),
         ext: 'js json',
         tasks: ['build']
     }).on('restart', function() {

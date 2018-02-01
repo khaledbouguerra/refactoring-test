@@ -1,33 +1,32 @@
 var express = require('express');
 import { isAuth } from '../lib/middleware'
 
-const router =  express.Router();
+export default function load(productService) {
+  const router =  express.Router();
 
-router.get('/view/:id', isAuth, function(req, res) {
-    var id = req.params.id;
-    var sqlite3 = require('sqlite3').verbose();
-    let db = new sqlite3.Database('database.sqlite');
+  router.get('/view/:id', isAuth, function (req, res) {
+      var id = req.params.id;
 
-    db.get("SELECT * FROM products WHERE id = " + id, function(err, row) {
-        console.log(row);
-        res.render('view', {product: row});
-    });
+      productService.getProduct(id, function(product) {
+        console.log(product);
+        res.render('view', { product: product });
+      });
+  });
 
-    db.close();
-});
+  router.get('/cart/:id', isAuth, function (req, res) {
+      var id = req.params.id;
 
-router.get('/cart/:id', isAuth, function(req, res) {
-    var id = req.params.id;
-    var sqlite3 = require('sqlite3').verbose();
-    var db = new sqlite3.Database('database.sqlite');
+      productService.getProduct(id, function(product) {
+        console.log(product);
+        res.json({ success: true, text: "Product " + id + " successfully bought" });
+      });
+  });
 
-    db.get("SELECT * FROM products WHERE id = " + id, function(err, row) {
-        console.log(row);
-        res.json({success:true, text: "Product " + id + " successfully bought"})
-    });
+  router.get('/products/list', function(req, res) {
+      productService.getProducts(function(products) {
+        res.render('list', {products: products});
+      });
+  });
 
-    db.close();
-});
-
-
-export default router;
+  return router;
+}

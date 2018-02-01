@@ -1,5 +1,8 @@
 'use strict';
-
-export function routeIndex(req, res){
-    res.render('test PROJET');
+export default function load(models) {
+  return function routeIndex(req, res) {
+    models.getProducts(function(products) {
+      res.render('list.twig', {products: products});
+    });
+  };
 }
