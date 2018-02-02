@@ -23,8 +23,8 @@ class ProductService {
 
   getProduct(id, callback) {
     this.init();
-
-    this.db.get("SELECT * FROM products WHERE id = " + id, (err, row) => {
+    this.db.get("SELECT * FROM products WHERE id = ?", [id], (err, row) => {
+    //this.db.get("SELECT * FROM products WHERE id = ?", [id], (err, row) => {
         console.log(row);
         callback(row);
         this.db.close();
