@@ -1,5 +1,5 @@
 let express = require('express');
-import {isAuth} from '../../lib/middleware'
+import {isAuth} from '../lib/middleware'
 import productCtrl from '../controllers/products';
 
 export default function load() {

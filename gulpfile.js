@@ -4,7 +4,7 @@ var nodemon = require('gulp-nodemon');
 var notify = require('gulp-notify');
 var clean = require('gulp-clean');
 
-const srcfiles = ["app.js", "routes/*", 'lib/*', 'middleware/*', 'models/*']
+const srcfiles = ["app.js", "routes/*","controllers/*" ,'lib/*', 'middleware/*', 'models/*','config/**'];
 
 gulp.task('es6', () => {
     return gulp.src(srcfiles, {base: "."})
