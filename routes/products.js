@@ -1,32 +1,28 @@
-var express = require('express');
-import { isAuth } from '../lib/middleware'
+let express = require('express');
+import {isAuth} from '../../lib/middleware'
+import productCtrl from '../controllers/products';
 
-export default function load(productService) {
-  const router =  express.Router();
+export default function load() {
+    const router = express.Router();
 
-  router.get('/view/:id', isAuth, function (req, res) {
-      var id = req.params.id;
+    router.get('/view/:id', isAuth, function (req, res) {
+        /** get Product by id */
 
-      productService.getProduct(id, function(product) {
-        console.log(product);
-        res.render('view', { product: product });
-      });
-  });
+        productCtrl.getProduct(req, res);
 
-  router.get('/cart/:id', isAuth, function (req, res) {
-      var id = req.params.id;
+    });
 
-      productService.getProduct(id, function(product) {
-        console.log(product);
-        res.json({ success: true, text: "Product " + id + " successfully bought" });
-      });
-  });
+    router.get('/cart/:id', isAuth, function (req, res) {
+        /** buy a product*/
 
-  router.get('/products/list', function(req, res) {
-      productService.getProducts(function(products) {
-        res.render('list', {products: products});
-      });
-  });
+        productCtrl.buyProduct(req, res)
+    });
 
-  return router;
+    router.get('/products/list', function (req, res) {
+        /** list products*/
+
+        productCtrl.listProducts(req, res)
+    });
+
+    return router;
 }

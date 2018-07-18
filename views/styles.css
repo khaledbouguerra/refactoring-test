@@ -36,3 +36,6 @@ a.logo{
     width:350px;
     background: url("http://www.chanel.com/img/logo_chanel.svg") scroll no-repeat top left;
 }
+div.product-description {
+    margin-top: 10%;
+}

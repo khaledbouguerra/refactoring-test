@@ -20,13 +20,13 @@
             <div class="col-4">
                 <figure>
                     <img class="card-img-top" src="/{{ product.image }}" />
-                    <figcaption>{{ product.name }}</figcaption>
+                    <figcaption class="text-center">{{ product.name }}</figcaption>
                 </figure>
             </div>
-            <div class="col-8">
+            <div class="col-8 product-description">
                 <p>{{ product.description }}</p>
                 <p>Stock level: {{ product.stock }}</p>
-                <a class="btn btn-primary" href="/products/cart/{{ product.id }}">Buy</a>
+                <a class="btn btn-outline-primary" href="/products/cart/{{ product.id }}">Buy</a>
             </div>
         </div>
     </section>
